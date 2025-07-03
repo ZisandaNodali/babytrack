@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 const VaccineTracker = () => {
   const [birthDate, setBirthDate] = useState('');
   const [schedule, setSchedule] = useState([]);
   const [completed, setCompleted] = useState({});
 
-  const vaccines = [
+  // ✅ useMemo so it's not recreated on every render
+  const vaccines = useMemo(() => [
     { name: 'BCG', weeksAfterBirth: 0 },
     { name: 'Polio', weeksAfterBirth: 6 },
     { name: 'DTP', weeksAfterBirth: 6 },
     { name: 'Measles', weeksAfterBirth: 36 },
-  ];
+  ], []);
 
-  // ✅ Wrap calculateSchedule in useCallback
+  // ✅ useCallback with vaccines as stable input
   const calculateSchedule = useCallback((date) => {
     if (!date) return;
 
@@ -35,7 +36,7 @@ const VaccineTracker = () => {
       setBirthDate(savedBirthDate);
       calculateSchedule(savedBirthDate);
     }
-  }, [calculateSchedule]); // ✅ Now included
+  }, [calculateSchedule]);
 
   const handleDateChange = (e) => {
     const date = e.target.value;
