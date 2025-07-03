@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const VaccineTracker = () => {
   const [birthDate, setBirthDate] = useState('');
@@ -12,8 +12,8 @@ const VaccineTracker = () => {
     { name: 'Measles', weeksAfterBirth: 36 },
   ];
 
-  // ✅ Move this ABOVE useEffect
-  const calculateSchedule = (date) => {
+  // ✅ Wrap calculateSchedule in useCallback
+  const calculateSchedule = useCallback((date) => {
     if (!date) return;
 
     const birth = new Date(date);
@@ -24,7 +24,7 @@ const VaccineTracker = () => {
     });
 
     setSchedule(scheduleList);
-  };
+  }, [vaccines]);
 
   useEffect(() => {
     const savedCompleted = localStorage.getItem('vaccineCompleted');
@@ -33,9 +33,9 @@ const VaccineTracker = () => {
     const savedBirthDate = localStorage.getItem('babyBirthDate');
     if (savedBirthDate) {
       setBirthDate(savedBirthDate);
-      calculateSchedule(savedBirthDate); // ✅ No warning now
+      calculateSchedule(savedBirthDate);
     }
-  }, []);
+  }, [calculateSchedule]); // ✅ Now included
 
   const handleDateChange = (e) => {
     const date = e.target.value;
