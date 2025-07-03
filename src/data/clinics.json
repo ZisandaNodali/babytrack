@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Frere Hospital",
+    "location": "East London, Eastern Cape",
+    "services": ["Maternity ward", "Paediatrics", "Obstetrics/Gynecology"],
+    "contact": "(043) 123-4567", 
+    "address": "Amalinda, East London",
+    "openHours": "24/7 (Emergency & wards)"
+  },
+  {
+    "name": "Madwaleni Hospital",
+    "location": "Elliotdale area, Eastern Cape",
+    "services": ["Maternity ward", "Paediatrics", "Obstetrics/Gynecology"],
+    "contact": "(047) 987-6543", 
+    "address": "Near Elliotdale",
+    "openHours": "24/7 (Emergency & wards)"
+  },
+  {
+    "name": "Madzikane Ka Zulu Memorial Hospital",
+    "location": "Mount Frere, Eastern Cape",
+    "services": ["Maternity ward", "Paediatrics", "Gynecology"],
+    "contact": "(039) 456-7890",
+    "address": "Sinamva A/A, Mount Frere",
+    "openHours": "24/7 (Acute services)"
+  },
+  {
+    "name": "Butterworth Hospital",
+    "location": "Butterworth, Eastern Cape",
+    "services": ["Maternity ward", "Paediatrics", "Obstetrics/Gynecology"],
+    "contact": "(047) 445-1122",
+    "address": "Scanlan Street, Butterworth",
+    "openHours": "24/7 (Wards & emergency)"
+  },
+  {
+    "name": "St Barnabas Hospital",
+    "location": "Libode, Eastern Cape",
+    "services": ["Maternity ward", "Paediatrics", "Obstetrics/Gynecology"],
+    "contact": "(047) 555-9900",
+    "address": "Ntlaza A/A, Libode",
+    "openHours": "24/7 (Wards & emergency)"
+  }
+]

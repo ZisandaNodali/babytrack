@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import SymptomChecker from './components/SymptomChecker';
 import BabyGrowthTracker from './components/BabyGrowthTracker';
+import ClinicFinder from "./components/ClinicFinder";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -84,6 +85,7 @@ function App() {
             <Link to="/vaccines" className="block hover:bg-teal-600 p-2 rounded">Vaccine Tracker</Link>
             <Link to="/symptoms" className="block hover:bg-teal-600 p-2 rounded">Symptom Checker</Link>
             <Link to="/growth" className="block hover:bg-teal-600 p-2 rounded">Growth Tracker</Link>
+            <Link to="/clinics" className="block hover:bg-teal-600 p-2 rounded">Nearby Clinics</Link>
             <Link to="/tips" className="block hover:bg-teal-600 p-2 rounded">Health Tips</Link>
           </nav>
           <button
@@ -107,6 +109,7 @@ function App() {
             <Route path="/vaccines" element={<VaccineTracker />} />
             <Route path="/symptoms" element={<SymptomChecker />} />
             <Route path="/growth" element={<BabyGrowthTracker />} />
+            <Route path="/clinics" element={<ClinicFinder />} />
             <Route path="/tips" element={<HealthTips />} />
           </Routes>
         </main>
