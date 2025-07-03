@@ -12,17 +12,7 @@ const VaccineTracker = () => {
     { name: 'Measles', weeksAfterBirth: 36 },
   ];
 
-  useEffect(() => {
-    const savedCompleted = localStorage.getItem('vaccineCompleted');
-    if (savedCompleted) setCompleted(JSON.parse(savedCompleted));
-
-    const savedBirthDate = localStorage.getItem('babyBirthDate');
-    if (savedBirthDate) {
-      setBirthDate(savedBirthDate);
-      calculateSchedule(savedBirthDate);
-    }
-  }, []);
-
+  // ✅ Move this ABOVE useEffect
   const calculateSchedule = (date) => {
     if (!date) return;
 
@@ -35,6 +25,17 @@ const VaccineTracker = () => {
 
     setSchedule(scheduleList);
   };
+
+  useEffect(() => {
+    const savedCompleted = localStorage.getItem('vaccineCompleted');
+    if (savedCompleted) setCompleted(JSON.parse(savedCompleted));
+
+    const savedBirthDate = localStorage.getItem('babyBirthDate');
+    if (savedBirthDate) {
+      setBirthDate(savedBirthDate);
+      calculateSchedule(savedBirthDate); // ✅ No warning now
+    }
+  }, []);
 
   const handleDateChange = (e) => {
     const date = e.target.value;
