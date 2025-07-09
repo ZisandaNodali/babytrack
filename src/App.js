@@ -14,6 +14,7 @@ import ClinicFinder from "./components/ClinicFinder";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [showLogin, setShowLogin] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedUser = localStorage.getItem("currentUser");
@@ -75,10 +76,42 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="flex min-h-screen bg-gray-50">
+  <Router>
+    <>
+      {/* Mobile Menu Toggle - inside Router ✅ */}
+      <div className="md:hidden bg-teal-700 p-4 flex justify-between items-center text-white">
+        <h1 className="text-xl font-bold">👶 BabyTrack</h1>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="focus:outline-none text-2xl"
+        >
+          ☰
+        </button>
+      </div>
+
+      {menuOpen && (
+        <div className="md:hidden bg-teal-600 text-white px-4 py-2 space-y-2">
+          <Link to="/pregnancy" className="block" onClick={() => setMenuOpen(false)}>Pregnancy Tracker</Link>
+          <Link to="/vaccines" className="block" onClick={() => setMenuOpen(false)}>Vaccine Tracker</Link>
+          <Link to="/symptoms" className="block" onClick={() => setMenuOpen(false)}>Symptom Checker</Link>
+          <Link to="/growth" className="block" onClick={() => setMenuOpen(false)}>Growth Tracker</Link>
+          <Link to="/clinics" className="block" onClick={() => setMenuOpen(false)}>Nearby Clinics</Link>
+          <Link to="/tips" className="block" onClick={() => setMenuOpen(false)}>Health Tips</Link>
+          <button
+            onClick={() => {
+              handleLogout();
+              setMenuOpen(false);
+            }}
+            className="block bg-red-500 w-full py-2 rounded mt-2"
+          >
+            Logout
+          </button>
+        </div>
+      )}
+
+      <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
         {/* Sidebar */}
-        <aside className="w-64 bg-teal-700 text-white p-6 space-y-4">
+        <aside className="w-full md:w-64 bg-teal-700 text-white p-6 space-y-4 md:block hidden">
           <h1 className="text-2xl font-bold mb-6">👶 BabyTrack</h1>
           <nav className="space-y-3">
             <Link to="/pregnancy" className="block hover:bg-teal-600 p-2 rounded">Pregnancy Tracker</Link>
@@ -97,7 +130,7 @@ function App() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-4 md:p-6 overflow-y-auto">
           <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-6 rounded-xl mb-6">
             <h2 className="text-xl font-semibold">Welcome back!</h2>
             <p className="text-sm text-teal-100">Track your baby's journey with ease.</p>
@@ -114,8 +147,9 @@ function App() {
           </Routes>
         </main>
       </div>
-    </Router>
-  );
+    </>
+  </Router>
+);
 }
 
 export default App;
